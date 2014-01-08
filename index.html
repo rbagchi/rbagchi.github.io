@@ -1,61 +1,66 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Rbagchi.github.io : github.io pages" />
 
-  <title>Rbagchi.github.io</title>
-  <meta name="description" content="github.io pages">
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Rbagchi.github.io</title>
+  </head>
 
-</head>
+  <body>
 
-<body>
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/rbagchi">View on GitHub</a>
 
-  <div class="wrapper">
-    <header>
-      <h1 class="title">Rbagchi.github.io</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">github.io pages</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/rbagchi" class="code">View Rbagchi.github.io on GitHub</a>
-        </div>
-        <span class="blc"></span><span class="trc"></span>
-        </div>
-        <article class="markdown-body">
-          <h1>
-<a name="stuff-i-run-into" class="anchor" href="#stuff-i-run-into"><span class="octicon octicon-link"></span></a>Stuff I run into</h1>
-        </article>
-      </div>
+          <h1 id="project_title">Rbagchi.github.io</h1>
+          <h2 id="project_tagline">github.io pages</h2>
+
+        </header>
     </div>
-    <footer>
-      <div class="owner">
 
-      <p><a href="https://github.com/rbagchi" class="avatar"><img src="https://secure.gravatar.com/avatar/6630dbd633289bda104e1217232e4e28?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a>View <a href="https://github.com/rbagchi">rbagchi</a> on <a href="https://www.github.com">GitHub</a></p>
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="20-years-of-sql-and-i-discover-this" class="anchor" href="#20-years-of-sql-and-i-discover-this"><span class="octicon octicon-link"></span></a>20 years of SQL and I discover this</h1>
 
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="https://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/rbagchi/rbagchi.github.io/tarball/master" class="tar">tar</a><a href="https://github.com/rbagchi/rbagchi.github.io/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
+<p>When I'm looking at a table of data, I'd select some criteria, like <code>n_rows &gt; 1000</code>, and do three queries to get a sense of whether it was meaningful.</p>
 
-  
-</body>
+<pre><code>select count(*) from innodb_table_stats;
+select count(*) from innodb_table_stats where n_rows &lt;= 1000;
+select count(*) from innodb_table_stats where n_rows &gt; 1000;
+</code></pre>
+
+<p>[...]</p>
+
+<p>Which gets old fast (and isn't <a href="http://c2.com/cgi/wiki?DontRepeatYourself">DRY</a> at all).  Imagine my surprise to discover that I can do this</p>
+
+<pre><code>mysql&gt; use mysql;
+Database changed
+mysql&gt; select sum(1), sum(n_rows &lt;= 1000), sum(n_rows &gt; 1000) from innodb_table_stats;
++--------+---------------------+--------------------+
+| sum(1) | sum(n_rows &lt;= 1000) | sum(n_rows &gt; 1000) |
++--------+---------------------+--------------------+
+|    228 |                 116 |                112 |
++--------+---------------------+--------------------+
+</code></pre>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
 </html>
