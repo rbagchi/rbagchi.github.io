@@ -1,0 +1,12 @@
+# Site settings
+title: Notes from Ranjan
+email: ranjan.bagchi@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Minor musings and frontend hacks.  Which are amusing.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://rbagchi.github.io" # the base hostname & protocol for your site
+twitter_username: rbagchi
+github_username:  rbagchi
+
+# Build settings
+markdown: kramdown
