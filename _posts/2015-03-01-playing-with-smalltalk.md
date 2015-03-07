@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: Üm̈l̈äüẗs̈ äl̈l̈ ẗḧë ẅäÿ d̈öẅn̈
 ---
 

@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: post
 title: 20 years of SQL and I discover this
 ---
 
@@ -22,4 +22,3 @@ Which gets old fast (and isn't [DRY](http://c2.com/cgi/wiki?DontRepeatYourself) 
     +--------+---------------------+--------------------+
     |    228 |                 116 |                112 |
     +--------+---------------------+--------------------+
-    
