@@ -21,10 +21,8 @@ augmentPage
 	'#amber-with' asJQuery click: [ self doAmberWith ].
 	'#jquery-append' asJQuery click: [ self doJQueryAppend ].
 	'#echo-word' asJQuery click: [ self doEchoWord ].
-	'#input-word' asJQuery keypress: [:ev | 
-			(ev which = 13) ifTrue: [
+	'#input-word' asJQuery keyup: [:ev | 
 				self doEchoWord
-			].
 	]
 !
 

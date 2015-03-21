@@ -14,7 +14,7 @@ var self=this;
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx1) {
 //>>excludeEnd("ctx");
-var $1,$2,$3,$4;
+var $1,$2,$3;
 $1="#amber-with"._asJQuery();
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 $ctx1.sendIdx["asJQuery"]=1;
@@ -63,14 +63,11 @@ $ctx2.sendIdx["doEchoWord"]=1;
 }, function($ctx2) {$ctx2.fillBlock({},$ctx1,3)});
 //>>excludeEnd("ctx");
 }));
-$recv("#input-word"._asJQuery())._keypress_((function(ev){
+$recv("#input-word"._asJQuery())._keyup_((function(ev){
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 return $core.withContext(function($ctx2) {
 //>>excludeEnd("ctx");
-$4=$recv($recv(ev)._which()).__eq((13));
-if($core.assert($4)){
 return self._doEchoWord();
-};
 //>>excludeStart("ctx", pragmas.excludeDebugContexts);
 }, function($ctx2) {$ctx2.fillBlock({ev:ev},$ctx1,4)});
 //>>excludeEnd("ctx");
@@ -82,10 +79,10 @@ return self;
 },
 //>>excludeStart("ide", pragmas.excludeIdeData);
 args: [],
-source: "augmentPage\x0a\x09'#amber-with' asJQuery click: [ self doAmberWith ].\x0a\x09'#jquery-append' asJQuery click: [ self doJQueryAppend ].\x0a\x09'#echo-word' asJQuery click: [ self doEchoWord ].\x0a\x09'#input-word' asJQuery keypress: [:ev | \x0a\x09\x09\x09(ev which = 13) ifTrue: [\x0a\x09\x09\x09\x09self doEchoWord\x0a\x09\x09\x09].\x0a\x09]",
+source: "augmentPage\x0a\x09'#amber-with' asJQuery click: [ self doAmberWith ].\x0a\x09'#jquery-append' asJQuery click: [ self doJQueryAppend ].\x0a\x09'#echo-word' asJQuery click: [ self doEchoWord ].\x0a\x09'#input-word' asJQuery keyup: [:ev | \x0a\x09\x09\x09\x09self doEchoWord\x0a\x09]",
 referencedClasses: [],
 //>>excludeEnd("ide");
-messageSends: ["click:", "asJQuery", "doAmberWith", "doJQueryAppend", "doEchoWord", "keypress:", "ifTrue:", "=", "which"]
+messageSends: ["click:", "asJQuery", "doAmberWith", "doJQueryAppend", "doEchoWord", "keyup:"]
 }),
 $globals.TestApp);
 
