@@ -17,12 +17,22 @@ var Engine = Matter.Engine,
     Events = Matter.Events;
 
 // create a Matter.js engine
-var engine = Engine.create(document.getElementById('canvas-container'));
+var engine = Engine.create(document.getElementById('canvas-container'),{
+                render: {
+                    options: {
+                        fillStyle: 'red',
+                        wireframes: false,
+                        showAngleIndicator: false,
+                        showDebug: false
+                    }
+                }
+            }
+);
 
 // create two boxes and a ground
-var numBalls = 10
+var numBalls = 15
 
-var box1 = Bodies.rectangle(400, 50, 80, 80 , { isStatic: true });
+var box1 = Bodies.rectangle(400, 50, 80, 80 , { isStatic: true, render: {fillStyle: "green"} });
 var balls = []
 
 var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
