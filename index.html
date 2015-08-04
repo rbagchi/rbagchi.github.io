@@ -1,76 +1,23 @@
-<!DOCTYPE html>
-<html>
+---
+layout: default
+---
 
-  <head>
-    <meta charset='utf-8' />
-    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
-    <meta name="description" content="Rbagchi.github.io : github.io pages" />
+<div class="home">
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+  <h1 class="page-heading">Posts</h1>
 
-    <title>Rbagchi.github.io</title>
-  </head>
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-  <body>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+      </li>
+    {% endfor %}
+  </ul>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/rbagchi">View on GitHub</a>
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-          <h1 id="project_title">Rbagchi.github.io</h1>
-          <h2 id="project_tagline">github.io pages</h2>
-
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h1>
-<a name="20-years-of-sql-and-i-discover-this" class="anchor" href="#20-years-of-sql-and-i-discover-this"><span class="octicon octicon-link"></span></a>20 years of SQL and I discover this</h1>
-
-<p>When I'm looking at a table of data, I'd select some criteria, like <code>n_rows &gt; 1000</code>, and do three queries to get a sense of whether it was meaningful.</p>
-
-<pre><code>select count(*) from innodb_table_stats;
-select count(*) from innodb_table_stats where n_rows &lt;= 1000;
-select count(*) from innodb_table_stats where n_rows &gt; 1000;
-</code></pre>
-
-<p>[...]</p>
-
-<p>Which gets old fast (and isn't <a href="http://c2.com/cgi/wiki?DontRepeatYourself">DRY</a> at all).  Imagine my surprise to discover that I can do this</p>
-
-<pre><code>mysql&gt; use mysql;
-Database changed
-mysql&gt; select sum(1), sum(n_rows &lt;= 1000), sum(n_rows &gt; 1000) from innodb_table_stats;
-+--------+---------------------+--------------------+
-| sum(1) | sum(n_rows &lt;= 1000) | sum(n_rows &gt; 1000) |
-+--------+---------------------+--------------------+
-|    228 |                 116 |                112 |
-+--------+---------------------+--------------------+
-</code></pre>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-              <script type="text/javascript">
-            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-          </script>
-          <script type="text/javascript">
-            try {
-              var pageTracker = _gat._getTracker("UA-46946112-1");
-            pageTracker._trackPageview();
-            } catch(err) {}
-          </script>
-
-
-  </body>
-</html>
+</div>

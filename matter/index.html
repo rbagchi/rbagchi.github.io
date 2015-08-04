@@ -1,0 +1,64 @@
+<html>
+<head>
+  <script type="text/javascript" src="./bower_components/matter-js/build/matter.js"></script>
+
+</head>
+<body>
+  <p>Playing around with Matter JS</>
+  <div id="canvas-container"></div>
+</body>
+<script type="text/javascript">
+
+  // Matter.js module aliases
+var Engine = Matter.Engine,
+    World = Matter.World,
+    Bodies = Matter.Bodies,
+    Body = Matter.Body,
+    Constraint = Matter.Constraint,
+    Events = Matter.Events;
+
+// create a Matter.js engine
+var engine = Engine.create(document.getElementById('canvas-container'),{
+                render: {
+                    options: {
+                        fillStyle: 'red',
+                        wireframes: false,
+                        showAngleIndicator: false,
+                        showDebug: false
+                    }
+                }
+            }
+);
+
+// create two boxes and a ground
+var numBalls = 15
+
+var box1 = Bodies.rectangle(400, 50, 80, 80 , { isStatic: true, render: {fillStyle: "green"} });
+var balls = []
+
+var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+// add all of the bodies to the world
+World.add(engine.world, [box1, ground]);
+for(var i = 0; i < numBalls; i++) {
+  balls[i] = Bodies.circle((400 / numBalls) * (numBalls - i) - 100, 50, 10 + 10 / (i + 1), {frictionAir: 0});
+  World.add(engine.world, balls[i])
+  World.add(engine.world, Constraint.create({
+      bodyA: i == 0?box1:balls[i-1],
+      bodyB: balls[i]
+  }));
+}
+
+// animation
+Events.on(engine, "afterTick", function(event) {
+    if(event.timestamp) {
+    var seconds = event.timestamp / 1000.0
+    Body.translate(box1, {x: Math.cos(seconds) * 3, y: 0})
+
+  }
+    // boxA.position.x = 400 + Math.sin(seconds) * 75.0
+})
+// run the engine
+Engine.run(engine);
+</script>
+</html>
