@@ -31,7 +31,7 @@ var engine = Engine.create(document.getElementById('canvas-container'),{
 );
 
 // create two boxes and a ground
-var numBalls = 15
+var numBalls = 100
 
 var box1 = Bodies.rectangle(400, 50, 80, 80 , { isStatic: true, render: {fillStyle: "green"} });
 var balls = []
@@ -41,7 +41,7 @@ var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
 // add all of the bodies to the world
 World.add(engine.world, [box1, ground]);
 for(var i = 0; i < numBalls; i++) {
-  balls[i] = Bodies.circle((400 / numBalls) * (numBalls - i) - 100, 50, 10 + 10 / (i + 1), {frictionAir: 0});
+  balls[i] = Bodies.circle((400 / numBalls) * (numBalls - i) - 100, 50, 10 + 10 / (i + 1), {frictionAir: 0, density: 0.001 * ( i + 1)});
   World.add(engine.world, balls[i])
   World.add(engine.world, Constraint.create({
       bodyA: i == 0?box1:balls[i-1],
@@ -53,8 +53,10 @@ for(var i = 0; i < numBalls; i++) {
 Events.on(engine, "afterTick", function(event) {
     if(event.timestamp) {
     var seconds = event.timestamp / 1000.0
-    Body.translate(box1, {x: Math.cos(seconds) * 3, y: 0})
-
+    var oscilator = Math.sin(seconds  * 0.7) * 300
+    var desiredPosition = 400 + oscilator
+    // box1.position = {x: oscilator, y: box1.position.y}
+    Body.translate(box1, {x: desiredPosition - box1.position.x, y: 0})
   }
     // boxA.position.x = 400 + Math.sin(seconds) * 75.0
 })
