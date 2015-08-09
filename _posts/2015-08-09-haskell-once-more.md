@@ -1,3 +1,7 @@
+---
+layout: post
+title: Yet another vacation reading about Haskell
+---
 Seems that every several years I go over Haskell again.  This time I read about 80% of 
 [Learn You A Haskell For Great Good](http://learnyouahaskell.com/).   Paid a lot of attention to functors, 
 applicatives, and monoids.  As is the nature of Haskell, I felt simultaneously confused and a bit smarter.
